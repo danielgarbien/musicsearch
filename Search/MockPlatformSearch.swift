@@ -21,9 +21,11 @@ class MockPlatformSearch {
 
 extension MockPlatformSearch: PlatformSearch {
     
-    func load(entityOfType: Entity, didChange: (PlatformSearch) -> Void) {
-        state[entityOfType] = .loaded(results: [""])
-        didChange(self)
+    func load(entityOfType: Entity, didChange: @escaping (PlatformSearch) -> Void) {
+        OperationQueue.main.addOperation {
+            self.state[entityOfType] = .loaded(results: [""])
+            didChange(self)
+        }
     }
     
     var info: PlatformInfo {

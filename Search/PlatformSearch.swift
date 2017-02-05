@@ -43,7 +43,7 @@ protocol PlatformSearch: class {
     init(searchTerm: String)
     
     // loading
-    func load(entityOfType: Entity, didChange: (PlatformSearch) -> Void)
+    func load(entityOfType: Entity, didChange: @escaping (PlatformSearch) -> Void)
     var state: [Entity: SearchState] { get }
     
     // info
@@ -52,13 +52,13 @@ protocol PlatformSearch: class {
 
 extension PlatformSearch {
     
-    func loadAll(didChange: (PlatformSearch) -> Void) {
+    func loadAll(didChange: @escaping (PlatformSearch) -> Void) {
         state.keys.forEach {
             load(entityOfType: $0, didChange: didChange)
         }
     }
     
-    func loadFailed(didChange: (PlatformSearch) -> Void) {
+    func loadFailed(didChange: @escaping (PlatformSearch) -> Void) {
         for (key, value) in state {
             guard case .failed = value else {
                 continue

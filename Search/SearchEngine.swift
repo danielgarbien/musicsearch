@@ -19,7 +19,7 @@ class SearchEngine {
 
 extension SearchEngine {
     
-    func platformSearchEnginesLoading(for term: String, didChange: (PlatformSearch) -> Void) -> [PlatformSearch] {
+    func platformSearchEnginesLoading(for term: String, didChange: @escaping (PlatformSearch) -> Void) -> [PlatformSearch] {
         let engines = platformSearchEngines(for: term)
         engines.forEach {
             $0.loadAll(didChange: didChange)
