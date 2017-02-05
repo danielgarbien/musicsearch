@@ -9,13 +9,24 @@
 import UIKit
 
 class RootViewController: UIViewController {
+    
+    let searchEngine: SearchEngine
+    
+    init(searchEngine: SearchEngine) {
+        self.searchEngine = searchEngine
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         addImmediately(childController: childNavigationController, embeddedIn: view)
     }
 
-    private lazy var resultsController: ResultsViewController = ResultsViewController()
+    private lazy var resultsController: ResultsViewController = ResultsViewController(searchEngine: self.searchEngine)
     private lazy var searchController: UISearchController = {
         let searchController = UISearchController(searchResultsController: self.resultsController)
         searchController.searchResultsUpdater = self.resultsController
