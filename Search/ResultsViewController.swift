@@ -17,6 +17,13 @@ class ResultsViewController: UIViewController {
         super.init(nibName: nil, bundle: nil)
     }
     
+    func search(for term: String) {
+        print(term)
+        platformSearchEngines = searchEngine.platformSearchEnginesLoading(for: term) { [weak self] _ in
+            self?.updateView()
+        }
+    }
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -33,11 +40,26 @@ class ResultsViewController: UIViewController {
             tableView.reloadData()
         }
     }
+    
+    fileprivate var platformSearchEngines: [PlatformSearch]?
+}
+
+extension ResultsViewController {
+    
+    func updateView() {
+        guard let engines = platformSearchEngines else {
+            return
+        }
+        let results = engines.map {
+            Result(info: $0.info, state: $0.state)
+        }
+        dataSource = ResultsDataSource(results: results)
+    }
 }
 
 extension ResultsViewController: UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {
-        
+        // show suggestions?
     }
 }

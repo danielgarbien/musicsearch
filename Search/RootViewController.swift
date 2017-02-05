@@ -26,10 +26,11 @@ class RootViewController: UIViewController {
         addImmediately(childController: childNavigationController, embeddedIn: view)
     }
 
-    private lazy var resultsController: ResultsViewController = ResultsViewController(searchEngine: self.searchEngine)
+    fileprivate lazy var resultsController: ResultsViewController = ResultsViewController(searchEngine: self.searchEngine)
     private lazy var searchController: UISearchController = {
         let searchController = UISearchController(searchResultsController: self.resultsController)
         searchController.searchResultsUpdater = self.resultsController
+        searchController.searchBar.delegate = self
         searchController.hidesNavigationBarDuringPresentation = false
         return searchController
     }()
@@ -40,4 +41,14 @@ class RootViewController: UIViewController {
         self.mainController.definesPresentationContext = true
         return UINavigationController(rootViewController: self.mainController)
     }()
+}
+
+extension RootViewController: UISearchBarDelegate {
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard let text = searchBar.text else {
+            return
+        }
+        resultsController.search(for: text)
+    }
 }
