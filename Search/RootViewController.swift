@@ -15,7 +15,7 @@ class RootViewController: UIViewController {
         addImmediately(childController: childNavigationController, embeddedIn: view)
     }
 
-    fileprivate lazy var resultsController: ResultsViewController = ResultsViewController()
+    private lazy var resultsController: ResultsViewController = ResultsViewController()
     private lazy var searchController: UISearchController = {
         let searchController = UISearchController(searchResultsController: self.resultsController)
         searchController.searchResultsUpdater = self.resultsController
