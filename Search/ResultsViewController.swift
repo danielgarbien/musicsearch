@@ -30,6 +30,8 @@ class ResultsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.estimatedRowHeight = 244
+        tableView.rowHeight = UITableViewAutomaticDimension
         edgesForExtendedLayout = []
     }
     
