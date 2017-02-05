@@ -26,6 +26,7 @@ class RootViewController: UIViewController {
     private lazy var mainController: MainViewController = MainViewController()
     private lazy var childNavigationController: UINavigationController = {
         self.mainController.navigationItem.titleView = self.searchController.searchBar
+        self.mainController.definesPresentationContext = true
         return UINavigationController(rootViewController: self.mainController)
     }()
 }
