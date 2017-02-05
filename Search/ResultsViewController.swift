@@ -25,6 +25,14 @@ class ResultsViewController: UIViewController {
         super.viewDidLoad()
         edgesForExtendedLayout = []
     }
+    
+    @IBOutlet private weak var tableView: UITableView!
+    fileprivate var dataSource: UITableViewDataSource? {
+        didSet {
+            tableView.dataSource = dataSource
+            tableView.reloadData()
+        }
+    }
 }
 
 extension ResultsViewController: UISearchResultsUpdating {
