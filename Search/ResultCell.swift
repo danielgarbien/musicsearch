@@ -35,7 +35,7 @@ extension ResultCell {
     }
 }
 
-extension SearchState {
+fileprivate extension SearchState {
     
     func description(with entity: Entity) -> String {
         switch self {
@@ -49,7 +49,7 @@ extension SearchState {
     }
 }
 
-extension Entity {
+fileprivate extension Entity {
     
     func name() -> String {
         switch self {
