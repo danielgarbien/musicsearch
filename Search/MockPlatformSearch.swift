@@ -23,7 +23,7 @@ extension MockPlatformSearch: PlatformSearch {
     
     func load(entityOfType: Entity, didChange: @escaping (PlatformSearch) -> Void) {
         OperationQueue.main.addOperation {
-            self.state[entityOfType] = .loaded(results: [""])
+            self.state[entityOfType] = .loaded(results: ["witka", "siema", "elo"])
             didChange(self)
         }
     }
