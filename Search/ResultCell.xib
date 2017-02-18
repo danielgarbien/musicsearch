@@ -49,7 +49,6 @@
                         </subviews>
                         <constraints>
                             <constraint firstItem="aKt-U5-6Hv" firstAttribute="width" secondItem="dgn-bo-dAM" secondAttribute="width" id="LMD-b9-RjO"/>
-                            <constraint firstAttribute="height" constant="106" id="Qu8-gA-PDB"/>
                             <constraint firstItem="aKt-U5-6Hv" firstAttribute="width" secondItem="Ltg-OA-ASr" secondAttribute="width" id="UIY-61-j8w"/>
                         </constraints>
                     </stackView>
