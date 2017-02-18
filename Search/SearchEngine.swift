@@ -14,7 +14,7 @@ class SearchEngine {
         MockPlatform()
     ]
     
-    func platformSearchEngines(for term: String) -> [PlatformSearch] {
+    func platformSearches(for term: String) -> [PlatformSearch] {
         return platforms.map {
             $0.platformSearch(for: term)
         }
@@ -23,8 +23,8 @@ class SearchEngine {
 
 extension SearchEngine {
     
-    func platformSearchEnginesLoading(for term: String, didChange: @escaping (PlatformSearch) -> Void) -> [PlatformSearch] {
-        let engines = platformSearchEngines(for: term)
+    func platformSearchesLoading(for term: String, didChange: @escaping (PlatformSearch) -> Void) -> [PlatformSearch] {
+        let engines = platformSearches(for: term)
         engines.forEach {
             $0.loadAll(didChange: didChange)
         }

@@ -19,7 +19,7 @@ class ResultsViewController: UIViewController {
     
     func search(for term: String) {
         print(term)
-        platformSearchEngines = searchEngine.platformSearchEnginesLoading(for: term) { [weak self] _ in
+        platformSearchEngines = searchEngine.platformSearchesLoading(for: term) { [weak self] _ in
             self?.updateView()
         }
     }
