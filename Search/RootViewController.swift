@@ -51,4 +51,15 @@ extension RootViewController: UISearchBarDelegate {
         }
         resultsController.search(for: text)
     }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        resultsController.reset()
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        guard searchText.isEmpty else {
+            return
+        }
+        resultsController.reset()
+    }
 }
