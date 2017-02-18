@@ -23,10 +23,12 @@ class SearchEngine {
 
 extension SearchEngine {
     
-    func platformSearchesLoading(for term: String, didChange: @escaping (PlatformSearch) -> Void) -> [PlatformSearch] {
+    func platformSearchesLoadingAll(for term: String, didChange: @escaping (PlatformSearch) -> Void) -> [PlatformSearch] {
         let engines = platformSearches(for: term)
-        engines.forEach {
-            $0.loadAll(didChange: didChange)
+        engines.forEach { engine in
+            engine.search.loadAll(didChange: { _ in
+                didChange(engine)
+            })
         }
         return engines
     }

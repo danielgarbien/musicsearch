@@ -8,7 +8,15 @@
 
 import Foundation
 
+
 protocol Platform {
     
-    func platformSearch(for searchTerm: String) -> PlatformSearch
+    func search(for term: String) -> Search
+
+    // info
+    var info: PlatformInfo { get }
+}
+
+struct PlatformInfo {
+    let name: String
 }

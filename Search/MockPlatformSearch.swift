@@ -8,28 +8,24 @@
 
 import Foundation
 
-class MockPlatformSearch {
+class MockSearch {
     
-    let searchTerm: String
+    let term: String
     fileprivate(set) var state: [Entity : SearchState]
     
-    required init(searchTerm: String) {
-        self.searchTerm = searchTerm
+    required init(term: String) {
+        self.term = term
         state = Entity.allEntitiesInitialState()
     }
 }
 
-extension MockPlatformSearch: PlatformSearch {
+extension MockSearch: Search {
     
-    func load(entityOfType: Entity, didChange: @escaping (PlatformSearch) -> Void) {
+    func load(entityOfType: Entity, didChange: @escaping (Search) -> Void) {
         OperationQueue.main.addOperation {
             self.state[entityOfType] = .loaded(results: entityOfType.mockResults())
             didChange(self)
         }
-    }
-    
-    var info: PlatformInfo {
-        return PlatformInfo(name: "Mock")
     }
 }
 

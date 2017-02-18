@@ -19,7 +19,7 @@ class ResultsViewController: UIViewController {
     
     func search(for term: String) {
         print(term)
-        platformSearchEngines = searchEngine.platformSearchesLoading(for: term) { [weak self] _ in
+        platformSearchEngines = searchEngine.platformSearchesLoadingAll(for: term) { [weak self] _ in
             self?.updateView()
         }
     }
@@ -58,7 +58,7 @@ extension ResultsViewController {
             return
         }
         let results = engines.map {
-            Result(info: $0.info, state: $0.state)
+            Result(info: $0.platform.info, state: $0.search.state)
         }
         dataSource = ResultsDataSource(results: results)
     }

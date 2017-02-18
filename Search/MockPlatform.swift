@@ -14,7 +14,11 @@ class MockPlatform {
 
 extension MockPlatform: Platform {
     
-    func platformSearch(for searchTerm: String) -> PlatformSearch {
-        return MockPlatformSearch(searchTerm: searchTerm)
+    func search(for term: String) -> Search {
+        return MockSearch(term: term)
+    }
+    
+    var info: PlatformInfo {
+        return PlatformInfo(name: "Mock")
     }
 }
