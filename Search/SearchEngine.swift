@@ -10,10 +10,14 @@ import Foundation
 
 class SearchEngine {
     
+    let platforms: [Platform] = [
+        MockPlatform()
+    ]
+    
     func platformSearchEngines(for term: String) -> [PlatformSearch] {
-        return [
-            MockPlatformSearch(searchTerm: term)
-        ]
+        return platforms.map {
+            $0.platformSearch(for: term)
+        }
     }
 }
 
